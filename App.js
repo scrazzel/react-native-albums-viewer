@@ -5,34 +5,38 @@
  */
 
 import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { Platform, StyleSheet, Text, View } from 'react-native';
+import LoginForm from './src/components/LoginForm';
+import firebase from 'firebase';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+export default class App extends Component {
 
-type Props = {};
-export default class App extends Component<Props> {
+  componentWillMount(){
+    firebase.initializeApp({
+        apiKey: "AIzaSyDsYn7L7qlngJnrYMxDOCp4n7zHJK-jRmw",
+        authDomain: "albumsviewer.firebaseapp.com",
+        databaseURL: "https://albumsviewer.firebaseio.com",
+        projectId: "albumsviewer",
+        storageBucket: "albumsviewer.appspot.com",
+        messagingSenderId: "897404904381"
+      });
+
+      // jezeli sie zaloguje => istnieje obiekt user
+      // jezeli sie wyloguje => nie ma obiektu user
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user){
+            this.setState({loggedIn: true});
+        }
+        else {
+            this.setState({loggedIn: false});
+        }
+    })
+}
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+        <LoginForm />
       </View>
     );
   }
@@ -41,18 +45,5 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+  }
+})
