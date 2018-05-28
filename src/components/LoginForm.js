@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, ActivityIndicator } from 'react-native';
 
 class LoginForm extends Component {
     
@@ -28,6 +28,25 @@ class LoginForm extends Component {
 
     onLoginFail(){
         this.setState({error: 'Nie udalo sie utworzyc konta.', loading: false});
+    }
+
+    renderButtonOrSpinner(){
+        if (this.state.loading){
+        return (        
+            <View style={styles.spinner}>
+                <ActivityIndicator size='large' style={styles.spinner} />
+            </View>
+            );
+        }
+        else {
+            return(
+                <TouchableOpacity style={styles.buttonContainer} onPress={this.onButtonPress.bind(this)}>
+                    <Text style={styles.button}>
+                        Zaloguj się
+                    </Text>
+                </TouchableOpacity>
+            );
+        }
     }
 
     render() {
@@ -59,11 +78,9 @@ class LoginForm extends Component {
                         value={this.state.password}
                         secureTextEntry
                     />
-                    <TouchableOpacity style={styles.buttonContainer} onPress={this.onButtonPress.bind(this)}>
-                        <Text style={styles.button}>
-                            Zaloguj się
-                        </Text>
-                    </TouchableOpacity>
+                    <View>
+                        {this.renderButtonOrSpinner()}
+                    </View>
                     <Text style={styles.error}>
                         {this.state.error}
                     </Text>
@@ -122,6 +139,11 @@ const styles = StyleSheet.create({
         fontSize: 20,
         alignSelf: 'center',
         color: 'red' 
+    },
+    spinner: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });
 
