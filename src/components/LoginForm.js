@@ -9,6 +9,8 @@ class LoginForm extends Component {
         const email = this.state.email;
         const password = this.state.password;
 
+        const firebase = require("firebase");
+
         this.setState({error: '', loading: true});
 
         firebase.auth().signInWithEmailAndPassword(email, password)
@@ -57,7 +59,7 @@ class LoginForm extends Component {
                         value={this.state.password}
                         secureTextEntry
                     />
-                    <TouchableOpacity style={styles.buttonContainer}>
+                    <TouchableOpacity style={styles.buttonContainer} onPress={this.onButtonPress.bind(this)}>
                         <Text style={styles.button}>
                             Zaloguj się
                         </Text>
