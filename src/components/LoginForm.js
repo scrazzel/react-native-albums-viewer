@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, ActivityInd
 
 class LoginForm extends Component {
     
-    state = { email: '', password: '', error: 'dupa', loading: false };
+    state = { email: '', password: '', error: '', loading: false };
 
     onButtonPress(){
         const email = this.state.email;

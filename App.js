@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import LoginForm from './src/components/LoginForm';
 import firebase from 'firebase';
+import Header from './src/components/Header';
 
 export default class App extends Component {
 
@@ -37,7 +38,12 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <LoginForm />
+        {
+          /*
+            <LoginForm />
+          */
+          <Header headerText="Nagłóweczek" />
+        }
       </View>
     );
   }
