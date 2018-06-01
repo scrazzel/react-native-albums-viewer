@@ -3,14 +3,17 @@
  * https://github.com/facebook/react-native
  * @flow
  */
-
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import LoginForm from './src/components/LoginForm';
 import firebase from 'firebase';
 import Header from './src/components/Header';
+import LogoutButton from './src/components/LogoutButton';
+import AlbumList from './src/components/AlbumList';
 
 export default class App extends Component {
+
+  state = { loggedIn: false };
 
   componentWillMount(){
     firebase.initializeApp({
@@ -34,16 +37,32 @@ export default class App extends Component {
     })
 }
 
+  renderMainPage(){
+    if (this.state.loggedIn){
+      return(
+        <View>
+          <Header headerText="Nagłóweczek" />
+          <LogoutButton />
+          <AlbumList />
+        </View>
+      );
+    }
+    else {
+      return (
+        <LoginForm />
+      );
+    }
+  }
+
+  renderAlbumDetails(){
+    
+  }
+
 
   render() {
     return (
       <View style={styles.container}>
-        {
-          /*
-            <LoginForm />
-          */
-          <Header headerText="Nagłóweczek" />
-        }
+        {this.renderMainPage()}
       </View>
     );
   }
@@ -53,4 +72,4 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   }
-})
+});
