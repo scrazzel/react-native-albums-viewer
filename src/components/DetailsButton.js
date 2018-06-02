@@ -4,7 +4,7 @@ import AlbumDetails from './AlbumDetails';
 
 const DetailsButton = (props) => {
     return(
-        <TouchableOpacity style={styles.buttonContainer} onPress={() => Alert.alert('dupa') }>
+        <TouchableOpacity style={styles.buttonContainer} onPress={props.buttonWasPressed} >
             <Text style={styles.button}>
                 Szczegóły
             </Text>

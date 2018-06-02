@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, ActivityIndicator, StyleSheet } from 'react-native';
+import { Text, View, ScrollView, ActivityIndicator, StyleSheet, Button } from 'react-native';
 import firebase from 'firebase';
 import Album from './Album';
 import AlbumDetails from './AlbumDetails';
@@ -34,6 +34,9 @@ class AlbumList extends Component{
     }
 
     renderAlbumsList(){
+
+        //var { navigate } = this.props.navigate;
+
         if (this.state.albums === null) {
             return (            
                 <View style={styles.spinner}>
@@ -45,19 +48,7 @@ class AlbumList extends Component{
             return this.state.albums.map(album => 
                 <Album key={album.nazwa} band={album.wykonawca} title={album.nazwa} price={album.info.cena} genre={album.info.gatunek} publicationDate={album.info.rokWydania} 
             songs={album.utwory} bandLogo={album.logoZespolu} albumCover={album.okladkaAlbumu} /> );
-        }
-
-/*
-            var band = album.wykonawca;
-            var title = album.nazwa;
-            var price = album.info.cena;
-            var genre = album.info.gatunek;
-            var publicationDate = album.info.rokWydania;
-            var songs = album.utwory;
-            var bandLogo = album.logoAlbumu;
-            var albumImage = album.logoAlbumu;
-*/
-        
+        }      
     }
 
     render(){

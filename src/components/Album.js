@@ -21,7 +21,7 @@ const Album = (props) => {
             </View>
 
             <View style={styles.section}>
-                <DetailsButton props={props} />
+                <DetailsButton  />
             </View>
         </View>
     );

@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native';
-import App from './App';
+import AppNavigation from './App';
 
-AppRegistry.registerComponent('albumsViewer', () => App);
+AppRegistry.registerComponent('albumsViewer', () => AppNavigation);
