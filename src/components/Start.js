@@ -1,50 +1,21 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, ActivityIndicator } from 'react-native';
+import { Platform, StyleSheet, Text, View, Button } from 'react-native';
 import LoginForm from './src/components/LoginForm';
 import firebase from 'firebase';
 import Header from './src/components/Header';
 import LogoutButton from './src/components/LogoutButton';
 import AlbumList from './src/components/AlbumList';
-import AlbumDetails from './src/components/AlbumDetails';
+import ALbumDetails from './src/components/AlbumDetails';
 import { StackNavigator } from 'react-navigation';
-
-
-
-
-
-
-
-const screens = StackNavigator({
-  home: {
-    screen: "App",
-    navigationOptions:{
-      title: "Ekran główny"
-    }
-  },
-  albumDetails: {
-    screen: "AlbumDetails",
-    navigationOptions:{
-      title: "Szczegóły albumu"
-    }
-  }
-});
-
-
-
-
-
-
-
 
 
 export default class App extends Component {
 
-  state = { loggedIn: null };
+  state = { loggedIn: false };
+
+  goToDetails(){
+     this.props.navigation.navigate('ALbumDetails');
+  }
 
   componentWillMount(){
     firebase.initializeApp({
@@ -65,30 +36,23 @@ export default class App extends Component {
         else {
             this.setState({loggedIn: false});
         }
-        
     })
 }
 
   renderMainPage(){
-    switch(this.state.loggedIn){
-      case true:
-          return(
-            <View>
-            <Header headerText="Nagłóweczek" />
-            <LogoutButton />
-            <AlbumList />
-          </View>
-          );
-
-      case false:
-          return (<LoginForm />);
-
-      default:
-          return (            
-            <View style={styles.spinner}>
-              <ActivityIndicator size='large' style={styles.spinner} />
-            </View>
-        );
+    if (this.state.loggedIn){
+      return(
+        <View>
+          <Header headerText="Nagłóweczek" />
+          <LogoutButton />
+          <AlbumList />
+        </View>
+      );
+    }
+    else {
+      return (
+        <LoginForm />
+      );
     }
   }
 
@@ -105,14 +69,3 @@ export default class App extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  spinner: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-});

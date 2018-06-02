@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView } from 'react-native';
+import { Text, View, ScrollView, ActivityIndicator, StyleSheet } from 'react-native';
 import firebase from 'firebase';
 import Album from './Album';
 import AlbumDetails from './AlbumDetails';
 
 
 class AlbumList extends Component{
-    state = { albums: [] };
+    state = { albums: null };
     
     componentWillMount(){
        var ref = firebase.database().ref('albums');
@@ -34,9 +34,19 @@ class AlbumList extends Component{
     }
 
     renderAlbumsList(){
-        return this.state.albums.map(album => 
-            <Album key={album.nazwa} band={album.wykonawca} title={album.nazwa} price={album.info.cena} genre={album.info.gatunek} publicationDate={album.info.rokWydania} 
-            songs={album.utwory} bandLogo={album.logoZespolu} albumCover={album.okladkaAlbumu} />
+        if (this.state.albums === null) {
+            return (            
+                <View style={styles.spinner}>
+                  <ActivityIndicator size='large' style={styles.spinner} />
+                </View>
+            );
+        }
+        else {
+            return this.state.albums.map(album => 
+                <Album key={album.nazwa} band={album.wykonawca} title={album.nazwa} price={album.info.cena} genre={album.info.gatunek} publicationDate={album.info.rokWydania} 
+            songs={album.utwory} bandLogo={album.logoZespolu} albumCover={album.okladkaAlbumu} /> );
+        }
+
 /*
             var band = album.wykonawca;
             var title = album.nazwa;
@@ -47,7 +57,7 @@ class AlbumList extends Component{
             var bandLogo = album.logoAlbumu;
             var albumImage = album.logoAlbumu;
 */
-        );
+        
     }
 
     render(){
@@ -58,5 +68,14 @@ class AlbumList extends Component{
         );
     }    
 }
+
+const styles = StyleSheet.create({
+    spinner: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: 50
+    }
+  });
 
 export default AlbumList;
