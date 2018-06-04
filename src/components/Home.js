@@ -35,7 +35,7 @@ export default class Home extends Component {
   */
 
   static navigationOptions = {
-    title: 'Nagłóweczek',
+    title: 'Biblioteka muzyczna',
     headerTitleStyle: { 
       textAlign: 'center', 
       flex: 1,

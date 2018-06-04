@@ -60,8 +60,10 @@ const styles = StyleSheet.create({
         marginRight: 10
     },
     bandLogo: {
-        height: 50,
-        width: 50
+        height: 80,
+        width: 80,
+        flex: 1,
+        resizeMode: 'contain'
     },
     headerContainer:{
         flexDirection: 'column',
