@@ -4,8 +4,7 @@ import AlbumDetails from './AlbumDetails';
 
 const DetailsButton = (props) => {
     return(
-
-        <TouchableOpacity style={styles.buttonContainer}  >
+        <TouchableOpacity style={styles.buttonContainer}  onPress={() => props.navigate("AlbumDetails")}>
             <Text style={styles.button}>
                 Szczegóły
             </Text>

@@ -66,12 +66,8 @@ renderMainPage(){
     case true:
         return(
           <View>
-            <Button 
-              title="TEST"
-              onPress={() => navigate("AlbumDetails")}
-            />
             <LogoutButton />
-            <AlbumList />
+            <AlbumList navigate={navigate}/>
           </View>
         );
 

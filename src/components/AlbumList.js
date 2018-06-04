@@ -49,14 +49,14 @@ class AlbumList extends Component{
         else {
             return this.state.albums.map(album => 
                 <Album key={album.nazwa} band={album.wykonawca} title={album.nazwa} price={album.info.cena} genre={album.info.gatunek} publicationDate={album.info.rokWydania} 
-                    songs={album.utwory} bandLogo={album.logoZespolu} albumCover={album.okladkaAlbumu}/> );
+                    songs={album.utwory} bandLogo={album.logoZespolu} albumCover={album.okladkaAlbumu} navigate={props.navigate}/> );
         }      
     }
 
     render(){
         return(
             <ScrollView>
-                {this.renderAlbumsList()}
+                {this.renderAlbumsList(this.props)}
             </ScrollView>
         );
     }    

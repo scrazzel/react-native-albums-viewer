@@ -3,7 +3,10 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default class AlbumDetails extends Component {
     static navigationOptions = {
-        title: "Strona szczegolow"
+        title: 'Szczegóły albumu',
+        headerTitleStyle: { 
+          flex:1 
+      }
       };
     
     render(){
