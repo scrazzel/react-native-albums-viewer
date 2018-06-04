@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 
-const LogoutButton = () => {
+const LogoutButton = (props) => {
 
     const firebase = require('firebase');
 
@@ -9,21 +9,17 @@ const LogoutButton = () => {
         <TouchableOpacity style={styles.buttonContainer} onPress={() => 
             firebase.auth()
             .signOut()
-            .then(() => Alert.alert('Wylogowales sie!'))}>
+            /*.then(() => Alert.alert('Wylogowales sie!'))*/}>
             <Text style={styles.button}>
-                Wyloguj się
-            </Text>
+                {props.test}
+            </Text>  
         </TouchableOpacity>
     );
 }
 
 const styles = StyleSheet.create({
     buttonContainer: {
-        backgroundColor: '#282828',
-        paddingVertical: 10,
-        marginLeft: 25,
-        marginRight: 25,
-        borderRadius: 5
+        borderRadius: 2
     },
     button: {
         color: '#ffffff',

@@ -9,7 +9,7 @@ const DetailsButton = (props) => {
 
     return(
         <TouchableOpacity style={styles.buttonContainer}  onPress={() => props.navigate("AlbumDetails", {band:props.band, title:props.title, price:props.price, genre:props.genre, publicationDate:props.publicationDate, 
-        songs:props.song, bandLogo:props.bandLogo, albumCover:props.albumCover})}>
+        songs:props.songs, bandLogo:props.bandLogo, albumCover:props.albumCover})}>
             <Text style={styles.button}>
                 Szczegóły
             </Text>

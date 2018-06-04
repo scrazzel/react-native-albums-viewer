@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, Button, ActivityIndicator } from 'react-native';
+import { Platform, StyleSheet, Text, View, Button, ActivityIndicator, Icon, Image } from 'react-native';
 import firebase from 'firebase';
 import Header from './Header';
 import LogoutButton from './LogoutButton';
@@ -12,14 +12,40 @@ export default class Home extends Component {
 
 
   state = { loggedIn: null };
+/*
+  static navigationOptions = null;
+
+  setNavigationOptions = () => {
+    if (this.state.loggedIn){
+      this.navigationOptions = {
+        title: 'Nagłóweczek',
+        headerTitleStyle: { 
+          textAlign: 'center', 
+          flex: 1,
+          alignSelf: 'center',
+          marginLeft: 70
+        },
+        headerRight: <LogoutButton test={<Image style={{width: 100, height: 100}} source={require('../images/logoutIcon.png')}/>}/>
+      }
+    }
+    else this.navigationOptions = {
+      header: null
+    }
+  };
+  */
 
   static navigationOptions = {
     title: 'Nagłóweczek',
     headerTitleStyle: { 
-      textAlign:"center", 
-      flex:1 
-  }
+      textAlign: 'center', 
+      flex: 1,
+      alignSelf: 'center',
+      marginLeft: 70
+    },
+    headerRight: <LogoutButton test={<Image style={{width: 100, height: 100}} source={require('../images/logoutIcon.png')}/>}/>
 };
+
+
 /*
 
   ifShowHeader(){
@@ -57,10 +83,12 @@ static navigationOptions = {
             this.setState({loggedIn: false});
         }
     })
+
 }
 
 renderMainPage(){
   var { navigate } = this.props.navigation;
+  //this.setNavigationOptions();
 
   switch(this.state.loggedIn){
     case true:
@@ -105,5 +133,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  image: {
+    width: 40,
+    height: 40
   }
 });
