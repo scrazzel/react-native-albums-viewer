@@ -10,10 +10,12 @@ export default class AlbumDetails extends Component {
       };
     
     render(){
+        console.log("details logi");
+        var { params } = this.props.navigation.state;
         return(
             <View>
                 <Text>
-                    Dziala XD
+                    {params.title}
                 </Text>
             </View>
         );

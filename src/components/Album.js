@@ -21,7 +21,8 @@ const Album = (props) => {
             </View>
 
             <View style={styles.section}>
-                <DetailsButton  navigate={props.navigate}/>
+                <DetailsButton  navigate={props.navigate} band={props.band} title={props.title} price={props.price} genre={props.genre} publicationDate={props.publicationDate} 
+                    songs={props.songs} bandLogo={props.bandLogo} albumCover={props.albumCover}/>
             </View>
         </View>
     );
