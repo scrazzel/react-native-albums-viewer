@@ -11,31 +11,7 @@ export default class AlbumDetails extends Component {
           marginLeft: 55
         },
       };
-
-    renderAlbumSongs(params){
-        console.log('paramsy');
-        console.log(params);
-        let counter = 0;
-        let headerStyleToAdd = '';
-        return params.songs.map((song) => {
-            counter++;
-            if (counter % 2 == 0 ) {
-                return (<View style={styles.headerContainer}>
-                    <Text style={styles.headerTextLight}>
-                        <Text style={styles.boldText}>{counter}.</Text> {song}
-                    </Text>
-                </View>);
-            }
-            else {
-                return(<View style={styles.headerContainer}>
-                    <Text style={styles.headerTextDark}>
-                        <Text style={styles.boldText}>{counter}.</Text> {song}
-                    </Text>
-                </View>);
-            }
-        });
-    }
-    
+ 
     render(){
         console.log("details logi");
         var { params } = this.props.navigation.state;
@@ -58,12 +34,6 @@ export default class AlbumDetails extends Component {
                     <Text style={styles.headerTextLight}>
                         <Text style={styles.boldText}>Cena: </Text>{params.price} zł
                     </Text>
-                </View>
-                <View style={styles.headerContainer}>
-                    <Text style={[styles.songsListHeader, styles.boldText]}>
-                        Lista utworów
-                    </Text>
-                    {this.renderAlbumSongs(params)}
                 </View>
             </ScrollView>
         );
@@ -95,15 +65,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#eceff4',
         color: '#000000',
         textAlign:'center'
-    },
-    songsListHeader:{
-        marginTop: 45,
-        fontSize: 18,
-        paddingVertical: 10,
-        paddingHorizontal: 10,
-        backgroundColor: '#282828',
-        color: '#ffffff',
-        textAlign: 'center'
     },
     boldText:{
         fontWeight: 'bold'

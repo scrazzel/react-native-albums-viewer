@@ -42,7 +42,7 @@ export default class Home extends Component {
       alignSelf: 'center',
       marginLeft: 70
     },
-    headerRight: <LogoutButton test={<Image style={{width: 100, height: 100}} source={require('../images/logoutIcon.png')}/>}/>
+    headerRight: <LogoutButton test={<Image style={{width: 70, height: 70}} source={require('../images/logoutIcon.png')}/>}/>
 };
 
 

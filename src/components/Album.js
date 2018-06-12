@@ -1,30 +1,27 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import LogoutButton from './LogoutButton';
-import DetailsButton from './DetailsButton';
 
 const Album = (props) => {
     return(
-        <View style={styles.container}>
-            <View  style={styles.section}>
-                <View style={styles.bandLogoContainer}>
-                    <Image style={styles.bandLogo} source={{uri: props.bandLogo}} />
+        <TouchableOpacity onPress={() => props.navigate("AlbumDetails", {band:props.band, title:props.title, price:props.price, genre:props.genre, publicationDate:props.publicationDate, 
+            bandLogo:props.bandLogo, albumCover:props.albumCover})}>
+            <View style={styles.container}>
+                <View  style={styles.section}>
+                    <View style={styles.bandLogoContainer}>
+                        <Image style={styles.bandLogo} source={{uri: props.bandLogo}} />
+                    </View>
+                    <View style={styles.headerContainer}>
+                        <Text style={styles.headerText}>{props.title}</Text>
+                        <Text>{props.band}</Text>
+                    </View>
                 </View>
-                <View style={styles.headerContainer}>
-                    <Text style={styles.headerText}>{props.title}</Text>
-                    <Text>{props.band}</Text>
+
+                <View style={styles.section}>
+                    <Image style={styles.albumImage} source={{uri: props.albumCover}} />
                 </View>
             </View>
-
-            <View style={styles.section}>
-                <Image style={styles.albumImage} source={{uri: props.albumCover}} />
-            </View>
-
-            <View style={styles.section}>
-                <DetailsButton  navigate={props.navigate} band={props.band} title={props.title} price={props.price} genre={props.genre} publicationDate={props.publicationDate} 
-                    songs={props.songs} bandLogo={props.bandLogo} albumCover={props.albumCover}/>
-            </View>
-        </View>
+        </TouchableOpacity>
     );
 
 }
