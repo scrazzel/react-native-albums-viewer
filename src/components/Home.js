@@ -37,12 +37,9 @@ export default class Home extends Component {
   static navigationOptions = {
     title: 'Biblioteka muzyczna',
     headerTitleStyle: { 
-      textAlign: 'center', 
-      flex: 1,
-      alignSelf: 'center',
-      marginLeft: 70
+      flex: 1
     },
-    headerRight: <LogoutButton test={<Image style={{width: 70, height: 70}} source={require('../images/logoutIcon.png')}/>}/>
+    headerRight: <LogoutButton test={<Image style={{width: 65, height: 65}} source={require('../images/logoutIcon.png')}/>}/>
 };
 
 

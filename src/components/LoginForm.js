@@ -42,7 +42,7 @@ class LoginForm extends Component {
             return(
                 <TouchableOpacity style={styles.buttonContainer} onPress={this.onButtonPress.bind(this)}>
                     <Text style={styles.button}>
-                        Zaloguj się
+                        ZALOGUJ SIĘ
                     </Text>
                 </TouchableOpacity>
             );

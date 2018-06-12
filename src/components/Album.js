@@ -7,17 +7,17 @@ const Album = (props) => {
         <TouchableOpacity onPress={() => props.navigate("AlbumDetails", {band:props.band, title:props.title, price:props.price, genre:props.genre, publicationDate:props.publicationDate, 
             bandLogo:props.bandLogo, albumCover:props.albumCover})}>
             <View style={styles.container}>
-                <View  style={styles.section}>
+                <View style={styles.section}>
                     <View style={styles.bandLogoContainer}>
                         <Image style={styles.bandLogo} source={{uri: props.bandLogo}} />
                     </View>
                     <View style={styles.headerContainer}>
                         <Text style={styles.headerText}>{props.title}</Text>
-                        <Text>{props.band}</Text>
+                        <Text style={styles.bandText}>{props.band}</Text>
                     </View>
                 </View>
 
-                <View style={styles.section}>
+                <View style={[styles.section, styles.paddingTop]}>
                     <Image style={styles.albumImage} source={{uri: props.albumCover}} />
                 </View>
             </View>
@@ -28,26 +28,16 @@ const Album = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        borderWidth: 1,
-        borderRadius: 2,
-        borderColor: '#ddd',
-        borderBottomWidth: 0,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 2,
-        elevation: 1,
+        elevation: 2,
         marginLeft: 5,
         marginRight: 5,
         marginTop: 10
     },
     section: {
-        borderBottomWidth: 1,
         padding: 5,
         backgroundColor: '#fff',
         justifyContent: 'flex-start',
         flexDirection: 'row',
-        borderColor: '#ddd',
         position: 'relative'
     },
     bandLogoContainer:{
@@ -67,13 +57,22 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around'
     },
     headerText:{
-        fontSize: 18
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#000000'
+    },
+    bandText:{
+        color: '#000000'
     },
     albumImage: {
         height: 300,
         flex: 1,
-        width: null
+        width: null,
+        resizeMode: 'stretch'
     },
+    paddingTop:{
+        paddingTop: 10
+    }
 });
 
 export default Album;

@@ -10,7 +10,7 @@ const LogoutButton = (props) => {
             firebase.auth()
             .signOut()
             /*.then(() => Alert.alert('Wylogowales sie!'))*/}>
-            <Text style={styles.button}>
+            <Text>
                 {props.test}
             </Text>  
         </TouchableOpacity>
@@ -19,13 +19,9 @@ const LogoutButton = (props) => {
 
 const styles = StyleSheet.create({
     buttonContainer: {
-        borderRadius: 2
-    },
-    button: {
-        color: '#ffffff',
-        textAlign: 'center',
-        fontSize: 18
-    },
+        borderRadius: 2,
+        marginRight: 15
+    }
 });
 
 export default LogoutButton;

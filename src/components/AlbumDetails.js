@@ -8,7 +8,6 @@ export default class AlbumDetails extends Component {
         title: 'Informacje o albumie',
         headerTitleStyle: { 
           flex:1,
-          marginLeft: 55
         },
       };
  
@@ -19,21 +18,66 @@ export default class AlbumDetails extends Component {
         return(
             <ScrollView style={styles.container}>
                 <View style={styles.headerContainer}>
-                    <Text style={styles.headerTextLight}>
-                        <Text style={styles.boldText}>Tytuł: </Text>{params.title}
-                    </Text>
-                    <Text style={styles.headerTextDark}>
-                        <Text style={styles.boldText}>Wykonawca: </Text>{params.band}
-                    </Text>
-                    <Text style={styles.headerTextLight}>
-                        <Text style={styles.boldText}>Gatunek: </Text>{params.genre}
-                    </Text>
-                    <Text style={styles.headerTextDark}>
-                        <Text style={styles.boldText}>Rok wydania: </Text>{params.publicationDate}
-                    </Text>
-                    <Text style={styles.headerTextLight}>
-                        <Text style={styles.boldText}>Cena: </Text>{params.price} zł
-                    </Text>
+                    <View style={styles.containerLight}>
+                        <View>
+                            <Text style={[styles.headerTextLight, styles.boldText]}>
+                                Tytuł:
+                            </Text>
+                        </View>
+                        <View>
+                            <Text style={styles.headerTextLight}>
+                                {params.title}
+                            </Text>
+                        </View>
+                    </View>
+                    <View style={styles.containerDark}>
+                        <View>
+                            <Text style={[styles.headerTextDark, styles.boldText]}>
+                                Wykonawca:
+                            </Text>
+                        </View>
+                        <View>
+                            <Text style={styles.headerTextDark}>
+                                {params.band}
+                            </Text>
+                        </View>
+                    </View>
+                    <View style={styles.containerLight}>
+                        <View>
+                            <Text style={[styles.headerTextLight, styles.boldText]}>
+                                Gatunek:
+                            </Text>
+                        </View>
+                        <View>
+                            <Text style={styles.headerTextLight}>
+                                {params.genre}
+                            </Text>
+                        </View>
+                    </View>
+                    <View style={styles.containerDark}>
+                        <View>
+                            <Text style={[styles.headerTextDark, styles.boldText]}>
+                                Rok wydania:
+                            </Text>
+                        </View>
+                        <View>
+                            <Text style={styles.headerTextDark}>
+                                {params.publicationDate}
+                            </Text>
+                        </View>
+                    </View>
+                    <View style={styles.containerLight}>
+                        <View>
+                            <Text style={[styles.headerTextLight, styles.boldText]}>
+                                Cena:
+                            </Text>
+                        </View>
+                        <View>
+                            <Text style={styles.headerTextLight}>
+                                {params.price} zł
+                            </Text>
+                        </View>
+                    </View>
                 </View>
             </ScrollView>
         );
@@ -44,7 +88,7 @@ const styles = StyleSheet.create({
     container: {
         marginLeft: 5,
         marginRight: 5,
-        marginTop: 10
+        marginTop: 17
     },
     headerContainer:{
         flexDirection: 'column',
@@ -54,7 +98,6 @@ const styles = StyleSheet.create({
         fontSize: 18,
         paddingVertical: 10,
         paddingHorizontal: 10,
-        backgroundColor: '#ffffff',
         color: '#000000',
         textAlign:'center'
     },
@@ -62,11 +105,16 @@ const styles = StyleSheet.create({
         fontSize: 18,
         paddingVertical: 10,
         paddingHorizontal: 10,
-        backgroundColor: '#eceff4',
         color: '#000000',
         textAlign:'center'
     },
     boldText:{
         fontWeight: 'bold'
+    },
+    containerLight:{
+        backgroundColor: '#ffffff'
+    },
+    containerDark:{
+        backgroundColor: '#eceff4'
     }
 });
