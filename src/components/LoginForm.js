@@ -34,7 +34,7 @@ class LoginForm extends Component {
         if (this.state.loading){
         return (        
             <View style={styles.spinner}>
-                <ActivityIndicator size='large' style={styles.spinner} />
+                <ActivityIndicator size='large' color='#03DAC6' style={styles.spinner} />
             </View>
             );
         }
@@ -67,6 +67,7 @@ class LoginForm extends Component {
                         onChangeText={(email) => this.setState({email: email})}
                         value={this.state.email}
                         autoCorrect={false}
+                        selectionColor='#03DAC6'
                     />
                     <TextInput
                         style={styles.input}
@@ -77,6 +78,7 @@ class LoginForm extends Component {
                         onChangeText={(password) => this.setState({password: password})}
                         value={this.state.password}
                         secureTextEntry
+                        selectionColor='#03DAC6'
                     />
                     <View>
                         {this.renderButtonOrSpinner()}
@@ -121,7 +123,7 @@ const styles = StyleSheet.create({
         color: '#ffffff',
         borderRadius: 5,
         textAlign: 'center',
-        fontSize: 18
+        fontSize: 18,
     },
     buttonContainer: {
         backgroundColor: '#282828',
@@ -143,7 +145,7 @@ const styles = StyleSheet.create({
     spinner: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     }
 });
 
