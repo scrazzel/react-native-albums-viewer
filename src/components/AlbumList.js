@@ -18,16 +18,8 @@ class AlbumList extends Component{
                 var genre = album.info.gatunek;
                 var publicationDate = album.info.rokWydania;
                 var songs = album.utwory;
-                /*
-                console.log("Nazwa: " + title);
-                console.log("Wykonawca: " + band);
-                songs.forEach((song) => console.log(song));
-                console.log(genre);
-                */
             });
-        this.setState({albums: snapshot.val()});
-        //console.log(snapshot); => jakies gowno
-        //console.log(snapshot.val()); => tablica z danymi
+            this.setState({albums: snapshot.val()});
         }, (errorObject) => {
         console.log("The read failed: " + errorObject.code);
         });      
@@ -37,16 +29,6 @@ class AlbumList extends Component{
     renderAlbumsList(props){
         const navigate = this.props.nawigacja;
 
-        //var { navigate } = this.props.navigate;
-/*
-        if (this.state.albums === null) {
-            return (            
-                <View style={styles.spinner}>
-                  <ActivityIndicator size='large' style={styles.spinner} />
-                </View>
-            );
-        }
-        */
         if(this.state.albums) {
             return this.state.albums.map(album => 
                 <Album key={album.nazwa} band={album.wykonawca} title={album.nazwa} price={album.info.cena} genre={album.info.gatunek} publicationDate={album.info.rokWydania} 

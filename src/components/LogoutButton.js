@@ -8,9 +8,13 @@ const LogoutButton = (props) => {
 
     return(
         <TouchableOpacity style={styles.buttonContainer} onPress={() => {
-                firebase.auth().signOut();
+            firebase.auth().onAuthStateChanged((user) => {
+                if (user) {
+                    firebase.auth().signOut();
 
-                ToastAndroid.show('Wylogowano pomyślnie!', ToastAndroid.SHORT);
+                    ToastAndroid.show('Wylogowano pomyślnie!', ToastAndroid.SHORT);
+                }
+             });
         }}>
             <Text>
                 {props.logoutIcon}
