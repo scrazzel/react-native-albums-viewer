@@ -39,7 +39,7 @@ export default class Home extends Component {
     headerTitleStyle: { 
       flex: 1
     },
-    headerRight: <LogoutButton test={<Image style={{width: 65, height: 65}} source={require('../images/logoutIcon.png')}/>}/>
+    headerRight: <LogoutButton logoutIcon={<Image style={{width: 65, height: 65}} source={require('../images/logoutIcon.png')}/>}/>
 };
 
 

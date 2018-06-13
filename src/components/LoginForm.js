@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, ActivityIndicator, ToastAndroid } from 'react-native';
 
 class LoginForm extends Component {
     
-    state = { email: '', password: '', error: '', loading: false };
+    state = { email: '', password: '', loading: false };
 
     onButtonPress(){
         const email = this.state.email;
@@ -11,7 +11,7 @@ class LoginForm extends Component {
 
         const firebase = require("firebase");
 
-        this.setState({error: '', loading: true});
+        this.setState({loading: true});
 
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(this.onLoginSuccess.bind(this))
@@ -23,11 +23,12 @@ class LoginForm extends Component {
     }
 
     onLoginSuccess(){
-        this.setState({email: '', password: '', error: '', loading: false});
+        this.setState({email: '', password: '', loading: false});
     }
 
     onLoginFail(){
-        this.setState({error: 'Nie udalo sie utworzyc konta.', loading: false});
+        this.setState({loading: false});
+        ToastAndroid.show('Podano nieprawidłowe dane logowania!', ToastAndroid.SHORT);
     }
 
     renderButtonOrSpinner(){
@@ -83,9 +84,6 @@ class LoginForm extends Component {
                     <View>
                         {this.renderButtonOrSpinner()}
                     </View>
-                    <Text style={styles.error}>
-                        {this.state.error}
-                    </Text>
                 </View>
             </View>
         );
@@ -136,11 +134,6 @@ const styles = StyleSheet.create({
         color: '#ffffff',
         textAlign: 'center',
         fontSize: 18
-    },
-    error: {
-        fontSize: 20,
-        alignSelf: 'center',
-        color: 'red' 
     },
     spinner: {
         flex: 1,

@@ -1,17 +1,19 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Alert, ToastAndroid } from 'react-native';
+ 
 
 const LogoutButton = (props) => {
 
     const firebase = require('firebase');
 
     return(
-        <TouchableOpacity style={styles.buttonContainer} onPress={() => 
-            firebase.auth()
-            .signOut()
-            /*.then(() => Alert.alert('Wylogowales sie!'))*/}>
+        <TouchableOpacity style={styles.buttonContainer} onPress={() => {
+                firebase.auth().signOut();
+
+                ToastAndroid.show('Wylogowano pomyślnie!', ToastAndroid.SHORT);
+        }}>
             <Text>
-                {props.test}
+                {props.logoutIcon}
             </Text>  
         </TouchableOpacity>
     );

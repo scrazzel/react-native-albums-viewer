@@ -38,7 +38,7 @@ class AlbumList extends Component{
         const navigate = this.props.nawigacja;
 
         //var { navigate } = this.props.navigate;
-
+/*
         if (this.state.albums === null) {
             return (            
                 <View style={styles.spinner}>
@@ -46,7 +46,8 @@ class AlbumList extends Component{
                 </View>
             );
         }
-        else {
+        */
+        if(this.state.albums) {
             return this.state.albums.map(album => 
                 <Album key={album.nazwa} band={album.wykonawca} title={album.nazwa} price={album.info.cena} genre={album.info.gatunek} publicationDate={album.info.rokWydania} 
                     songs={album.utwory} bandLogo={album.logoZespolu} albumCover={album.okladkaAlbumu} navigate={props.navigate}/> );
