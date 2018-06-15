@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, Button, ActivityIndicator, Icon, Image } from 'react-native';
 import firebase from 'firebase';
-import Header from './Header';
 import LogoutButton from './LogoutButton';
 import AlbumList from './AlbumList';
 import ALbumDetails from './AlbumDetails';
@@ -14,19 +13,19 @@ export default class Home extends Component {
 
   static navigationOptions = {
     title: 'Biblioteka muzyczna',
-    headerTitleStyle: { 
+    headerTitleStyle: {
       flex: 1
     },
-    headerRight: <LogoutButton logoutIcon={<Image style={{width: 65, height: 65}} source={require('../images/logoutIcon.png')}/>}/>
-};
+    headerRight: <LogoutButton logoutIcon={<Image style={{ width: 65, height: 65 }} source={require('../images/logoutIcon.png')} />} />
+  };
 
-  goToDetails(){
-     this.props.navigation.navigate('ALbumDetails');
+  goToDetails() {
+    this.props.navigation.navigate('ALbumDetails');
   }
 
-  componentWillMount(){
+  componentWillMount() {
 
-    if(!firebase.apps.length){
+    if (!firebase.apps.length) {
       firebase.initializeApp({
         apiKey: "AIzaSyDsYn7L7qlngJnrYMxDOCp4n7zHJK-jRmw",
         authDomain: "albumsviewer.firebaseapp.com",
@@ -38,31 +37,31 @@ export default class Home extends Component {
     }
 
     firebase.auth().onAuthStateChanged((user) => {
-        if (user){
-            this.setState({loggedIn: true});
-        }
-        else {
-            this.setState({loggedIn: false});
-        }
+      if (user) {
+        this.setState({ loggedIn: true });
+      }
+      else {
+        this.setState({ loggedIn: false });
+      }
     })
 
-}
+  }
 
-renderMainPage(){
-  var { navigate } = this.props.navigation;
+  renderMainPage() {
+    var { navigate } = this.props.navigation;
 
-  switch(this.state.loggedIn){
-    case true:
-        return(
+    switch (this.state.loggedIn) {
+      case true:
+        return (
           <View>
             <LogoutButton />
-            <AlbumList navigate={navigate}/>
+            <AlbumList navigate={navigate} />
           </View>
         );
-    case false:
+      case false:
         return (<LoginForm />);
+    }
   }
-}
 
   render() {
     return (

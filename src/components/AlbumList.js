@@ -5,11 +5,11 @@ import Album from './Album';
 import AlbumDetails from './AlbumDetails';
 
 
-class AlbumList extends Component{
+class AlbumList extends Component {
     state = { albums: null };
-    
-    componentWillMount(){
-       var ref = firebase.database().ref('albums');
+
+    componentWillMount() {
+        var ref = firebase.database().ref('albums');
         ref.on("value", (snapshot) => {
             snapshot.val().forEach(album => {
                 var band = album.wykonawca;
@@ -19,39 +19,39 @@ class AlbumList extends Component{
                 var publicationDate = album.info.rokWydania;
                 var songs = album.utwory;
             });
-            this.setState({albums: snapshot.val()});
+            this.setState({ albums: snapshot.val() });
         }, (errorObject) => {
-        console.log("The read failed: " + errorObject.code);
-        });      
+            console.log("The read failed: " + errorObject.code);
+        });
     }
 
 
-    renderAlbumsList(props){
+    renderAlbumsList(props) {
         const navigate = this.props.nawigacja;
 
-        if(this.state.albums) {
-            return this.state.albums.map(album => 
-                <Album key={album.nazwa} band={album.wykonawca} title={album.nazwa} price={album.info.cena} genre={album.info.gatunek} publicationDate={album.info.rokWydania} 
-                    songs={album.utwory} bandLogo={album.logoZespolu} albumCover={album.okladkaAlbumu} navigate={props.navigate}/> );
-        }      
+        if (this.state.albums) {
+            return this.state.albums.map(album =>
+                <Album key={album.nazwa} band={album.wykonawca} title={album.nazwa} price={album.info.cena} genre={album.info.gatunek} publicationDate={album.info.rokWydania}
+                    songs={album.utwory} bandLogo={album.logoZespolu} albumCover={album.okladkaAlbumu} navigate={props.navigate} />);
+        }
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <ScrollView>
                 {this.renderAlbumsList(this.props)}
             </ScrollView>
         );
-    }    
+    }
 }
 
 const styles = StyleSheet.create({
     spinner: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginTop: 50
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 50
     }
-  });
+});
 
 export default AlbumList;

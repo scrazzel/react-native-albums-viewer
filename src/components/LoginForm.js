@@ -2,41 +2,41 @@ import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, ActivityIndicator, ToastAndroid } from 'react-native';
 
 class LoginForm extends Component {
-    
+
     state = { email: '', password: '', loading: false };
 
-    onButtonPress(){
+    onButtonPress() {
         const email = this.state.email;
         const password = this.state.password;
 
         const firebase = require("firebase");
 
-        this.setState({loading: true});
+        this.setState({ loading: true });
 
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(this.onLoginSuccess.bind(this))
             .catch(this.onLoginFail.bind(this));
     }
 
-    onLoginSuccess(){
-        this.setState({email: '', password: '', loading: false});
+    onLoginSuccess() {
+        this.setState({ email: '', password: '', loading: false });
     }
 
-    onLoginFail(){
-        this.setState({loading: false});
+    onLoginFail() {
+        this.setState({ loading: false });
         ToastAndroid.show('Podano nieprawidłowe dane logowania!', ToastAndroid.SHORT);
     }
 
-    renderButtonOrSpinner(){
-        if (this.state.loading){
-        return (        
-            <View style={styles.spinner}>
-                <ActivityIndicator size='large' color='#03DAC6' style={styles.spinner} />
-            </View>
+    renderButtonOrSpinner() {
+        if (this.state.loading) {
+            return (
+                <View style={styles.spinner}>
+                    <ActivityIndicator size='large' color='#03DAC6' style={styles.spinner} />
+                </View>
             );
         }
         else {
-            return(
+            return (
                 <TouchableOpacity style={styles.buttonContainer} onPress={this.onButtonPress.bind(this)}>
                     <Text style={styles.button}>
                         ZALOGUJ SIĘ
@@ -47,10 +47,10 @@ class LoginForm extends Component {
     }
 
     render() {
-        return(
+        return (
             <View style={styles.container}>
                 <View style={styles.imageContainer}>
-                    <Image 
+                    <Image
                         style={styles.image}
                         source={require('../images/loginIcon.png')}
                     />
@@ -59,9 +59,9 @@ class LoginForm extends Component {
                     <TextInput
                         style={styles.input}
                         placeholder="Email..."
-                        placeholderTextColor='rgba(255,255,255,0.9)'
+                        placeholderTextColor='#dddddd'
                         underlineColorAndroid='rgba(0,0,0,0)'
-                        onChangeText={(email) => this.setState({email: email})}
+                        onChangeText={(email) => this.setState({ email: email })}
                         value={this.state.email}
                         autoCorrect={false}
                         selectionColor='#03DAC6'
@@ -69,10 +69,10 @@ class LoginForm extends Component {
                     <TextInput
                         style={styles.input}
                         placeholder="Hasło..."
-                        placeholderTextColor='rgba(255,255,255,0.9)'
+                        placeholderTextColor='#dddddd'
                         underlineColorAndroid='rgba(0,0,0,0)'
                         autoCorrect={false}
-                        onChangeText={(password) => this.setState({password: password})}
+                        onChangeText={(password) => this.setState({ password: password })}
                         value={this.state.password}
                         secureTextEntry
                         selectionColor='#03DAC6'
@@ -89,16 +89,16 @@ class LoginForm extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#545454',
+        backgroundColor: '#767676',
         justifyContent: 'center'
 
     },
-    imageContainer:{
+    imageContainer: {
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 25
     },
-    image:{
+    image: {
         width: 120,
         height: 120
     },

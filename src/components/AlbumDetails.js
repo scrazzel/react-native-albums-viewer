@@ -6,16 +6,14 @@ export default class AlbumDetails extends Component {
 
     static navigationOptions = {
         title: 'Informacje o albumie',
-        headerTitleStyle: { 
-          flex:1,
+        headerTitleStyle: {
+            flex: 1,
         },
-      };
- 
-    render(){
-        console.log("details logi");
+    };
+
+    render() {
         var { params } = this.props.navigation.state;
-        console.log(params);
-        return(
+        return (
             <ScrollView style={styles.container}>
                 <View style={styles.headerContainer}>
                     <View style={styles.containerLight}>
@@ -90,31 +88,31 @@ const styles = StyleSheet.create({
         marginRight: 5,
         marginTop: 17
     },
-    headerContainer:{
+    headerContainer: {
         flexDirection: 'column',
         justifyContent: 'space-around'
     },
-    headerTextLight:{
+    headerTextLight: {
         fontSize: 18,
         paddingVertical: 10,
         paddingHorizontal: 10,
         color: '#000000',
-        textAlign:'center'
+        textAlign: 'center'
     },
-    headerTextDark:{
+    headerTextDark: {
         fontSize: 18,
         paddingVertical: 10,
         paddingHorizontal: 10,
         color: '#000000',
-        textAlign:'center'
+        textAlign: 'center'
     },
-    boldText:{
+    boldText: {
         fontWeight: 'bold'
     },
-    containerLight:{
+    containerLight: {
         backgroundColor: '#ffffff'
     },
-    containerDark:{
+    containerDark: {
         backgroundColor: '#eceff4'
     }
 });
